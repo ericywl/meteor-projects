@@ -10,31 +10,35 @@ const renderPlayers = function(playersList) {
         return (
             <p key={player._id}>
                 {player.name} has {player.score} {pointStr}.
+                <button onClick={() => decScore(player._id)}>-1</button>
                 <button onClick={() => incScore(player._id)}>+1</button>
-                <button onClick={() => decScore(player._id)}>-1</button>      
-                <button onClick={() => deletePlayer(player._id)}>
-                    X
-                </button>
+                <button onClick={() => deletePlayer(player._id)}>X</button>
             </p>
         );
     });
 };
 
-const deletePlayer = (playerId) => Players.remove({ _id: playerId });
+const deletePlayer = playerId => Players.remove({ _id: playerId });
 
-const incScore = (playerId) => {
-    Players.update({_id: playerId}, {
-        $inc: {score: 1}
-    });
+const incScore = playerId => {
+    Players.update(
+        { _id: playerId },
+        {
+            $inc: { score: 1 }
+        }
+    );
 };
 
-const decScore = (playerId) => {
-    Players.update({_id: playerId}, {
-        $inc: {score: -1}
-    });
+const decScore = playerId => {
+    Players.update(
+        { _id: playerId },
+        {
+            $inc: { score: -1 }
+        }
+    );
 };
 
-const handleSubmit = (event) => {
+const handleSubmit = event => {
     let playerName = event.target.playerName.value;
     event.preventDefault();
 
@@ -47,17 +51,22 @@ const handleSubmit = (event) => {
     }
 };
 
-Meteor.startup(() => {
-    let title = "Score Keep";
-    let name = "Eric";
+class TitleBar extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>My App Name</h1>
+            </div>
+        );
+    }
+}
 
+Meteor.startup(() => {
     Tracker.autorun(() => {
         let players = Players.find().fetch();
         let jsx = (
             <div>
-                <h1>{title}</h1>
-                <p>Hello {name}!</p>
-                <p>Second paragraph here!</p>
+                <TitleBar />
                 {renderPlayers(players)}
 
                 <form onSubmit={handleSubmit}>
