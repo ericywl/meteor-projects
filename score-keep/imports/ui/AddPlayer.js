@@ -3,7 +3,7 @@ import React from "react";
 import { Players } from "../api/players";
 
 export default class AddPlayer extends React.Component {
-    handleSubmit(event) {
+    static handleSubmit(event) {
         let playerName = event.target.playerName.value;
         event.preventDefault();
 
@@ -18,8 +18,8 @@ export default class AddPlayer extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit.bind(this)}>
+            <div className="item">
+                <form onSubmit={AddPlayer.handleSubmit.bind(this)}>
                     <input
                         type="text"
                         name="playerName"
