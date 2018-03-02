@@ -8,10 +8,10 @@ import { Players } from "../imports/api/players";
 
 Meteor.startup(() => {
     const title = "Score Keep";
-    // const subtitle = "created by Eric";
+    const subtitle = "created by Eric";
     Tracker.autorun(() => {
         let players = Players.find({}, {sort: {score: -1}}).fetch();
-        ReactDOM.render(<App title={title}
+        ReactDOM.render(<App title={title} subtitle={subtitle}
                              players={players}/>, document.getElementById("app"));
     });
 });
