@@ -41,7 +41,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
 };
 
 const routes = (
-    <Router>
+    <Router history={history}>
         <div>
             <Switch>
                 <PublicRoute exact path="/" component={Login}/>
@@ -55,7 +55,7 @@ const routes = (
 
 Tracker.autorun(() => {
     const isAuthenticated = !!Meteor.userId();
-    const pathname = this.props.history.location.pathname;
+    const pathname = history.location.pathname;
     const onUnauthenticatedPage = unauthenticatedPages.includes(pathname);
     const onAuthenticatedPage = authenticatedPages.includes(pathname);
 
@@ -65,11 +65,11 @@ Tracker.autorun(() => {
     if (onUnauthenticatedPage && isAuthenticated) {
         /* redirect authenticated users to links if they visit pages that is
          limited to unauthenticated users */
-        this.props.history.replace("/links");
+       history.replace("/links");
     } else if (onAuthenticatedPage && !isAuthenticated) {
         /* redirect unauthenticated users to login if they visit pages that
          require authentication */
-        this.props.history.replace("/");
+        history.replace("/");
     }
 });
 
