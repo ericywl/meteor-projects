@@ -59,9 +59,6 @@ Tracker.autorun(() => {
     const onUnauthenticatedPage = unauthenticatedPages.includes(pathname);
     const onAuthenticatedPage = authenticatedPages.includes(pathname);
 
-    console.log("isAuthenticated", isAuthenticated);
-    console.log("pathname", pathname);
-
     if (onUnauthenticatedPage && isAuthenticated) {
         /* redirect authenticated users to links if they visit pages that is
          limited to unauthenticated users */
