@@ -2,6 +2,6 @@ import React from "react";
 
 export default class Signup extends React.Component {
     render() {
-        return <p>Not found</p>;
+        return <p>Not found.</p>;
     }
 }
