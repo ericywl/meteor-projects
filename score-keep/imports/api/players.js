@@ -1,18 +1,20 @@
 import { Mongo } from "meteor/mongo";
-import numeral from "numeral";
+import Numbro from "numbro";
 
 export const Players = new Mongo.Collection("players");
 
-export const calcPlayerPositions = (players) => {
+export const calcPlayerPosition = (players) => {
+    let rank = 1;
+
     return players.map((player, index) => {
-        let rank = 1;
-        if (index !== 0 && players[index - 1].score > player.score)
+        if (index !== 0 && players[index - 1].score > player.score) {
             rank++;
+        }
 
         return {
             ...player,
             rank,
-            position: numeral(rank).format("0o")
+            position: Numbro(rank).format("0o")
         }
-    });
+    })
 };
