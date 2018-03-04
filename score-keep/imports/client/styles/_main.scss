@@ -1,4 +1,14 @@
 /* main SCSS file */
+// Variables
+$item-green: #e4ede0;
+$item-green-alt: darken($item-green, 15%);
+
+$item-blue: #dfe7ed;
+$item-blue-alt: darken($item-blue, 15%);
+
+$item-red: #eddfdf;
+$item-red-alt: darken($item-red, 15%);
+
 * {
     margin: 0;
     padding: 0;

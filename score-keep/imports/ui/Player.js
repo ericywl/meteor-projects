@@ -5,17 +5,18 @@ import { Players } from "../api/players";
 
 export default class Player extends React.Component {
     render() {
+        let itemClassName = `item item--position-${this.props.player.rank}`;
         let pointStr = this.props.player.score === 1 ? "point" : "points";
+
         return (
-            <div key={this.props.player._id} className="item">
+            <div key={this.props.player._id} className={itemClassName}>
                 <div className="player">
                     <div>
                         <h3 className="player__name">
                             {this.props.player.name}
                         </h3>
                         <p className="player__stats">
-                            {this.props.player.rank}{" "}
-                            {this.props.player.position}{" "}
+                            {this.props.player.position}{" place: "}
                             {this.props.player.score}{" "}
                             {pointStr}.
                         </p>
