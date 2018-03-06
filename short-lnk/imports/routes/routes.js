@@ -7,54 +7,71 @@ import Login from "../ui/Login";
 import history from "../api/history";
 import Links from "../ui/Links";
 
-const unauthenticatedPages = ["/", "/signup"];
-const authenticatedPages = ["/links"];
+const unauthPages = ["/", "/signup"];
+const authPages = ["/links"];
 
 const PublicRoute = ({ component: Component, isAuth, ...rest }) => {
-    const renderFunc = (props) => (isAuth)
-        ?
-        <Redirect to={{ pathname: "/links", state: { from: props.location } }}/>
-        : <Component {...props}/>;
+    const renderFunc = props => {
+        // check if user is trying to access page that doesn't require auth
+        const onUnauthPage = unauthPages.includes(props.location.pathname);
 
-    return <Route {...rest} render={renderFunc}/>
+        if (isAuth && onUnauthPage) {
+            return (
+                <Redirect
+                    to={{ pathname: "/links", state: { from: props.location } }}
+                />
+            );
+        }
+
+        return <Component {...props} />;
+    };
+
+    return <Route {...rest} render={renderFunc} />;
 };
 
 const PrivateRoute = ({ component: Component, isAuth, ...rest }) => {
-    const renderFunc = (props) => (!isAuth)
-        ? <Redirect to={{ pathname: "/", state: { from: props.location } }}/>
-        : <Component {...props}/>;
+    const renderFunc = props => {
+        // check if user is trying to access page that requires auth
+        const onAuthPage = authPages.includes(props.location.pathname);
 
-    return <Route {...rest} render={renderFunc}/>
+        if (!isAuth && onAuthPage) {
+            return (
+                <Redirect
+                    to={{ pathname: "/", state: { from: props.location } }}
+                />
+            );
+        }
+
+        return <Component {...props} />;
+    };
+
+    return <Route {...rest} render={renderFunc} />;
 };
 
-export const onAuthChange = (isAuthenticated) => {
-    const pathname = history.location.pathname;
-    const onUnauthenticatedPage = unauthenticatedPages.includes(pathname);
-    const onAuthenticatedPage = authenticatedPages.includes(pathname);
-
-    if (onUnauthenticatedPage && isAuthenticated) {
-        /* redirect authenticated users to links if they visit pages that is
-         limited to unauthenticated users */
-        history.replace("/links");
-    } else if (onAuthenticatedPage && !isAuthenticated) {
-        /* redirect unauthenticated users to login if they visit pages that
-         require authentication */
-        history.replace("/");
-    }
-};
-
-export const getRoutes = (isAuthenticated) => {
+export const getRoutes = isAuthenticated => {
     return (
         <Router history={history}>
             <div>
                 <Switch>
-                    <PublicRoute exact path="/" isAuth={isAuthenticated}
-                                 component={Login}/>
-                    <PublicRoute path="/signup" isAuth={isAuthenticated}
-                                 component={Signup}/>
-                    <PrivateRoute path="/links" isAuth={isAuthenticated}
-                                  component={Links}/>
-                    <Route component={NotFound}/>
+                    <PublicRoute
+                        exact
+                        path="/"
+                        isAuth={isAuthenticated}
+                        component={Login}
+                    />
+
+                    <PublicRoute
+                        path="/signup"
+                        isAuth={isAuthenticated}
+                        component={Signup}
+                    />
+
+                    <PrivateRoute
+                        path="/links"
+                        isAuth={isAuthenticated}
+                        component={Links}
+                    />
+                    <Route component={NotFound} />
                 </Switch>
             </div>
         </Router>

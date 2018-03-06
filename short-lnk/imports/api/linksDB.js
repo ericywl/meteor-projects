@@ -2,11 +2,11 @@ import { Mongo } from "meteor/mongo";
 import { SimpleSchema } from "simpl-schema/dist/SimpleSchema";
 import shortid from "shortid";
 
-export const Links = new Mongo.Collection("links");
+export const LinksDB = new Mongo.Collection("links");
 
 if (Meteor.isServer) {
     Meteor.publish("linksPub", function () {
-        return Links.find({ userId: this.userId });
+        return LinksDB.find({ userId: this.userId });
     });
 }
 
@@ -26,7 +26,7 @@ Meteor.methods({
             }
         }).validate({ url });
 
-        Links.insert({
+        LinksDB.insert({
             _id: shortid.generate(),
             url,
             userId: this.userId

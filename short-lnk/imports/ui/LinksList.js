@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Links } from "../api/links";
+import { LinksDB } from "../api/linksDB";
+import LinksListItem from "./LinksListItem";
 
 export default class LinksList extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class LinksList extends React.Component {
         console.log("LinksList componentDidMount");
         this.linksTracker = Tracker.autorun(() => {
             Meteor.subscribe("linksPub");
-            const links = Links.find().fetch();
+            const links = LinksDB.find().fetch();
             this.setState({ links });
         });
     }
@@ -24,11 +25,10 @@ export default class LinksList extends React.Component {
         this.linksTracker.stop();
     }
 
-    renderLinksList() {
+    renderItem() {
         return this.state.links.map((link) => {
-            return (
-                <li key={link._id}>{link.url}</li>
-            );
+            const absUrl = Meteor.absoluteUrl(link._id);
+            return <LinksListItem key={link._id} shortUrl={absUrl} {...link}/>
         });
     }
 
@@ -36,7 +36,7 @@ export default class LinksList extends React.Component {
         return (
             <div>
                 <div>
-                    <ul>{this.renderLinksList()}</ul>
+                    {this.renderItem()}
                 </div>
             </div>
         );

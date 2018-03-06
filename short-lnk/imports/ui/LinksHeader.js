@@ -1,21 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default class LinksHeader extends React.Component {
-    onLogout() {
-        Accounts.logout();
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>{this.props.title}</h1>
-                <button onClick={this.onLogout.bind(this)}>Log out</button>
-            </div>
-        );
-    }
-}
+const LinksHeader = props => {
+    return (
+        <div>
+            <h1>{props.title}</h1>
+            <button onClick={() => Accounts.logout()}>Log out</button>
+        </div>
+    );
+};
 
 LinksHeader.propTypes = {
     title: PropTypes.string.isRequired
-}
+};
+
+export default LinksHeader;

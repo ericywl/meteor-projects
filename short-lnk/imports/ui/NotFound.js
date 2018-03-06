@@ -1,7 +1,7 @@
 import React from "react";
 
-export default class Signup extends React.Component {
-    render() {
-        return <p>Not found.</p>;
-    }
-}
+const NotFound = () => {
+    return <p>Not found.</p>;
+};
+
+export default NotFound;
