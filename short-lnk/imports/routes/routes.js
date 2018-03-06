@@ -10,17 +10,18 @@ import Links from "../ui/Links";
 const unauthenticatedPages = ["/", "/signup"];
 const authenticatedPages = ["/links"];
 
-const PublicRoute = ({component: Component, isAuth, ...rest}) => {
+const PublicRoute = ({ component: Component, isAuth, ...rest }) => {
     const renderFunc = (props) => (isAuth)
-        ? <Redirect to={{pathname: "/links", state: {from: props.location}}}/>
+        ?
+        <Redirect to={{ pathname: "/links", state: { from: props.location } }}/>
         : <Component {...props}/>;
 
     return <Route {...rest} render={renderFunc}/>
 };
 
-const PrivateRoute = ({component: Component, isAuth, ...rest}) => {
+const PrivateRoute = ({ component: Component, isAuth, ...rest }) => {
     const renderFunc = (props) => (!isAuth)
-        ? <Redirect to={{pathname: "/", state: {from: props.location}}}/>
+        ? <Redirect to={{ pathname: "/", state: { from: props.location } }}/>
         : <Component {...props}/>;
 
     return <Route {...rest} render={renderFunc}/>

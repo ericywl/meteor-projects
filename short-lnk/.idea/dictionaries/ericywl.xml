@@ -4,6 +4,7 @@
       <w>authed</w>
       <w>signup</w>
       <w>unauthed</w>
+      <w>unmount</w>
     </words>
   </dictionary>
 </component>
