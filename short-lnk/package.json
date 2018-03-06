@@ -9,10 +9,12 @@
     "bcrypt": "^1.0.3",
     "history": "^4.7.2",
     "meteor-node-stubs": "^0.3.2",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "shortid": "^2.2.8",
     "simpl-schema": "^1.4.2"
   }
 }
