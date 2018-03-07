@@ -1,23 +1,73 @@
 import React from "react";
+import Modal from "react-modal";
 
 export default class AddLink extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalIsOpen: false,
+            url: "",
+            error: ""
+        };
+    }
+
     onSubmit(event) {
-        const url = this.refs.url.value.trim();
+        const { url } = this.state;
         event.preventDefault();
 
-        if (url) {
-            Meteor.call("linksInsert", url);
-            this.refs.url.value = "";
-        }
+        Meteor.call("linksInsert", url, (err, res) => {
+            if (!err) {
+                this.setState({ modalIsOpen: false, url: "", error: "" });
+            } else {
+                this.setState({ error: err.reason });
+            }
+        });
+    }
+
+    onChange(event) {
+        this.setState({ url: event.target.value.trim() });
+    }
+
+    modalToggle() {
+        this.setState({
+            modalIsOpen: !this.state.modalIsOpen,
+            url: "",
+            error: ""
+        });
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit.bind(this)}>
-                    <input type="text" ref="url" placeholder="New URL" />
-                    <button>Add Link</button>
-                </form>
+                <button onClick={this.modalToggle.bind(this)}>
+                    + Add Link
+                </button>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    contentLabel="Add Link"
+                    onAfterOpen={() => this.refs.url.focus()}
+                    onRequestClose={this.modalToggle.bind(this)}
+                    ariaHideApp={false}
+                >
+                    <h1>Add Link</h1>
+                    {this.state.error ? <p>{this.state.error}</p> : undefined}
+
+                    <form onSubmit={this.onSubmit.bind(this)}>
+                        <input
+                            ref="url"
+                            type="text"
+                            placeholder="New URL"
+                            value={this.state.url}
+                            onChange={this.onChange.bind(this)}
+                        />
+
+                        <button>Add Link</button>
+                    </form>
+
+                    <button onClick={this.modalToggle.bind(this)}>
+                        Cancel
+                    </button>
+                </Modal>
             </div>
         );
     }
