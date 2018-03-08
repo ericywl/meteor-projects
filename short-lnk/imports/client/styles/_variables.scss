@@ -1,17 +1,25 @@
-// colors
+/* COLORS */
 $grey: #dddddd;
+$purple: #5d4681;
 
-// spacing
+/* SPACING */
 $space: 1.4rem;
 
-// ====================================== //
-
-// font sizes
+/* FONT SIZES */
 $base-font-size: 1.6rem;
 
-// form inputs
+/* FORM INPUTS */
 $input-border: $grey;
+$input-spacing: 1rem;
 
-// boxed view
+/* BUTTON */
+$button-bg: $purple;
+$button-color: white;
+
+$button-pill-border-color: $purple;
+$button-pill-color: $purple;
+$button-pill-padding: 0.4rem 0.9rem;
+
+/* BOXED VIEW */
 $boxed-view-overlay-bg: $grey;
 $boxed-view-bg: white;

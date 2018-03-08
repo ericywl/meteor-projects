@@ -39,7 +39,7 @@ export default class AddLink extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.modalToggle.bind(this)}>
+                <button onClick={this.modalToggle.bind(this)} className="button">
                     + Add Link
                 </button>
                 <Modal
@@ -48,6 +48,8 @@ export default class AddLink extends React.Component {
                     onAfterOpen={() => this.refs.url.focus()}
                     onRequestClose={this.modalToggle.bind(this)}
                     ariaHideApp={false}
+                    className="boxed-view__box"
+                    overlayClassName="boxed-view boxed-view--modal"
                 >
                     <h1>Add Link</h1>
                     {this.state.error ? <p>{this.state.error}</p> : undefined}
@@ -61,10 +63,10 @@ export default class AddLink extends React.Component {
                             onChange={this.onChange.bind(this)}
                         />
 
-                        <button>Add Link</button>
+                        <button className="button">Add Link</button>
                     </form>
 
-                    <button onClick={this.modalToggle.bind(this)}>
+                    <button onClick={this.modalToggle.bind(this)} className="button">
                         Cancel
                     </button>
                 </Modal>

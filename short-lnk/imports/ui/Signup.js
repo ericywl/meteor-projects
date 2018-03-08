@@ -35,7 +35,7 @@ export default class Signup extends React.Component {
         return (
             <div className="boxed-view">
                 <div className="boxed-view__box">
-                    <h1>Sign up for Short Lnk</h1>
+                    <h1>Join Short Lnk</h1>
 
                     {this.state.error ? <p>{this.state.error}.</p> : undefined}
 
@@ -56,7 +56,7 @@ export default class Signup extends React.Component {
                             name="password"
                             placeholder="Password"
                         />
-                        <button>Create Account</button>
+                        <button className="button">Create Account</button>
                     </form>
 
                     <Link to="/">Already have an account?</Link>
