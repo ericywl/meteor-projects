@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Accounts } from "meteor/accounts-base";
 
-import { validateUser } from "../api/users";
+import { validateNewUser } from "../api/users";
 
 export default class Signup extends React.Component {
     constructor(props) {
@@ -17,9 +17,10 @@ export default class Signup extends React.Component {
 
         let email = this.refs.email.value.trim();
         let password = this.refs.password.value;
-        let message = validateUser(email, password);
-        if (message !== undefined) {
-            return this.setState({ error: message });
+        try {
+            validateNewUser(email, password);
+        } catch (e) {
+            return this.setState({ error: e.reason });
         }
 
         Accounts.createUser({ email, password }, err => {

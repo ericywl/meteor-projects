@@ -6,6 +6,7 @@ import { getRoutes } from "../imports/routes/routes";
 import "../imports/startup/simpl-schema-config";
 
 Meteor.startup(() => {
+    // noinspection JSCheckFunctionSignatures
     Session.set("showVisible", true);
 
     Tracker.autorun(() => {
