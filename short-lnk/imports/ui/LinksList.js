@@ -1,4 +1,5 @@
 import React from "react";
+import FlipMove from "react-flip-move";
 import { Session } from "meteor/session";
 
 import { LinksDB } from "../api/linksDB";
@@ -15,9 +16,12 @@ export default class LinksList extends React.Component {
     componentDidMount() {
         this.linksTracker = Tracker.autorun(() => {
             Meteor.subscribe("linksPub");
-            const links = LinksDB.find({
-                visible: Session.get("showVisible")
-            }).fetch();
+            const links = LinksDB.find(
+                {
+                    visible: Session.get("showVisible")
+                },
+                { sort: { visitedCount: -1 } }
+            ).fetch();
 
             this.setState({ links });
         });
@@ -28,6 +32,14 @@ export default class LinksList extends React.Component {
     }
 
     renderItem() {
+        if (this.state.links.length == 0) {
+            return (
+                <div className="item">
+                    <p className="item__status">No links found.</p>
+                </div>
+            );
+        }
+
         return this.state.links.map(link => {
             const absUrl = Meteor.absoluteUrl(link._id);
             return <LinksListItem key={link._id} shortUrl={absUrl} {...link} />;
@@ -37,7 +49,9 @@ export default class LinksList extends React.Component {
     render() {
         return (
             <div>
-                <div>{this.renderItem()}</div>
+                <FlipMove maintainContainerHeight="true">
+                    {this.renderItem()}
+                </FlipMove>
             </div>
         );
     }

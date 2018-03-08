@@ -9,10 +9,12 @@ import AddLink from "./AddLink";
 const Links = () => {
     return (
         <div>
-            <LinksHeader title="Your Links" />
-            <LinkListFilter />
-            <AddLink />
-            <LinksList />
+            <LinksHeader title="Short Lnk" />
+            <div className="page-content">
+                <LinkListFilter />
+                <AddLink />
+                <LinksList />
+            </div>
         </div>
     );
 };

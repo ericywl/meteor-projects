@@ -23,8 +23,8 @@ export default class LinksListFilter extends React.Component {
     render() {
         return (
             <div>
-                <label>
-                    <input
+                <label className="checkbox">
+                    <input className="checkbox__box"
                         type="checkbox"
                         checked={!this.state.showVisible}
                         onChange={e => {

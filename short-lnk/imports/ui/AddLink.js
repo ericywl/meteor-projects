@@ -39,7 +39,10 @@ export default class AddLink extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.modalToggle.bind(this)} className="button">
+                <button
+                    onClick={this.modalToggle.bind(this)}
+                    className="button"
+                >
                     + Add Link
                 </button>
                 <Modal
@@ -54,7 +57,10 @@ export default class AddLink extends React.Component {
                     <h1>Add Link</h1>
                     {this.state.error ? <p>{this.state.error}</p> : undefined}
 
-                    <form onSubmit={this.onSubmit.bind(this)}>
+                    <form
+                        onSubmit={this.onSubmit.bind(this)}
+                        className="boxed-view__form"
+                    >
                         <input
                             ref="url"
                             type="text"
@@ -64,11 +70,14 @@ export default class AddLink extends React.Component {
                         />
 
                         <button className="button">Add Link</button>
+                        <button
+                            type="button"
+                            className="button button--greyed"
+                            onClick={this.modalToggle.bind(this)}
+                        >
+                            Cancel
+                        </button>
                     </form>
-
-                    <button onClick={this.modalToggle.bind(this)} className="button">
-                        Cancel
-                    </button>
                 </Modal>
             </div>
         );
