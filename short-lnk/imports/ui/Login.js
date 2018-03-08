@@ -15,31 +15,45 @@ export default class Signup extends React.Component {
 
         let email = this.refs.email.value.trim();
         let password = this.refs.password.value;
-        Meteor.loginWithPassword({email}, password, (err) => {
+        Meteor.loginWithPassword({ email }, password, err => {
             if (err) {
-                this.setState({error: err.reason});
+                this.setState({ error: err.reason });
             } else {
-                this.setState({error: ""});
+                this.setState({ error: "" });
             }
         });
     }
 
     render() {
         return (
-            <div>
-                <h1>Login to Short Lnk</h1>
+            <div className="boxed-view">
+                <div className="boxed-view__box">
+                    <h1>Short Lnk</h1>
 
-                {this.state.error ? <p>{this.state.error}.</p> : undefined}
+                    {this.state.error ? <p>{this.state.error}.</p> : undefined}
 
-                <form onSubmit={this.onSubmit.bind(this)} noValidate>
-                    <input type="email" ref="email" name="email"
-                           placeholder="Email"/>
-                    <input type="password" ref="password" name="password"
-                           placeholder="Password"/>
-                    <button>Login</button>
-                </form>
+                    <form
+                        onSubmit={this.onSubmit.bind(this)}
+                        noValidate
+                        className="boxed-view__form"
+                    >
+                        <input
+                            type="email"
+                            ref="email"
+                            name="email"
+                            placeholder="Email"
+                        />
+                        <input
+                            type="password"
+                            ref="password"
+                            name="password"
+                            placeholder="Password"
+                        />
+                        <button>Login</button>
+                    </form>
 
-                <p><Link to="/signup">Don't have an account?</Link></p>
+                    <Link to="/signup">Don't have an account?</Link>
+                </div>
             </div>
         );
     }

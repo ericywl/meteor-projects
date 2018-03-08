@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Router, Switch } from "react-router-dom";
+import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Signup from "../ui/Signup";
 import NotFound from "../ui/NotFound";
@@ -50,7 +50,7 @@ const PrivateRoute = ({ component: Component, isAuth, ...rest }) => {
 
 export const getRoutes = isAuthenticated => {
     return (
-        <Router history={history}>
+        <Router>
             <div>
                 <Switch>
                     <PublicRoute

@@ -19,34 +19,48 @@ export default class Signup extends React.Component {
         let password = this.refs.password.value;
         let message = validateUser(email, password);
         if (message !== undefined) {
-            return this.setState({error: message});
+            return this.setState({ error: message });
         }
 
-        Accounts.createUser({email, password}, (err) => {
+        Accounts.createUser({ email, password }, err => {
             if (err) {
-                this.setState({error: err.reason});
+                this.setState({ error: err.reason });
             } else {
-                this.setState({error: ""});
+                this.setState({ error: "" });
             }
         });
     }
 
     render() {
         return (
-            <div>
-                <h1>Sign up for Short Lnk</h1>
+            <div className="boxed-view">
+                <div className="boxed-view__box">
+                    <h1>Sign up for Short Lnk</h1>
 
-                {this.state.error ? <p>{this.state.error}.</p> : undefined}
+                    {this.state.error ? <p>{this.state.error}.</p> : undefined}
 
-                <form onSubmit={this.onSubmit.bind(this)} noValidate>
-                    <input type="email" ref="email" name="email"
-                           placeholder="Email"/>
-                    <input type="password" ref="password" name="password"
-                           placeholder="Password"/>
-                    <button>Create Account</button>
-                </form>
+                    <form
+                        onSubmit={this.onSubmit.bind(this)}
+                        noValidate
+                        className="boxed-view__form"
+                    >
+                        <input
+                            type="email"
+                            ref="email"
+                            name="email"
+                            placeholder="Email"
+                        />
+                        <input
+                            type="password"
+                            ref="password"
+                            name="password"
+                            placeholder="Password"
+                        />
+                        <button>Create Account</button>
+                    </form>
 
-                <p><Link to="/">Already have an account?</Link></p>
+                    <Link to="/">Already have an account?</Link>
+                </div>
             </div>
         );
     }
