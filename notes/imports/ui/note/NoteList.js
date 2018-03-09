@@ -31,9 +31,17 @@ NoteList.propTypes = {
 };
 
 export default withTracker(() => {
-    Meteor.subscribe("notes");
+    const selectedNoteId = Session.get("selectedNoteId");
+    Meteor.subscribe("notes", () => Session.set("dataLoaded", true));
 
     return {
-        notes: NotesDB.find().fetch()
+        notes: NotesDB.find()
+            .fetch()
+            .map(note => {
+                return {
+                    ...note,
+                    selected: note._id === selectedNoteId
+                };
+            })
     };
 })(NoteList);

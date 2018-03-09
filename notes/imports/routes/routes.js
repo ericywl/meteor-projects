@@ -2,13 +2,14 @@ import React from "react";
 import { Redirect, Router, Route, Switch } from "react-router-dom";
 
 import history from "../api/history";
-import Dashboard from "../ui/auth/Dashboard";
+import Dashboard from "../ui/note/Dashboard";
 import Login from "../ui/auth/Login";
 import Signup from "../ui/auth/Signup";
 import NotFound from "../ui/NotFound";
 
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
+import NoteRoute from "./NoteRoute";
 
 export const getRoutes = isAuthenticated => {
     return (
@@ -29,12 +30,13 @@ export const getRoutes = isAuthenticated => {
                     />
 
                     <PrivateRoute
+                        exact
                         path="/dashboard"
                         isAuth={isAuthenticated}
                         component={Dashboard}
                     />
 
-                    <PrivateRoute
+                    <NoteRoute
                         path="/dashboard/:id"
                         isAuth={isAuthenticated}
                         component={Dashboard}

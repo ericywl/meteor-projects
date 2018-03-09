@@ -15,13 +15,18 @@ Tracker.autorun(() => {
     }
 });
 
-Meteor.startup(() => {
-    Session.set("selectedNoteId", undefined);
+if (Meteor.isClient) {
+    Meteor.startup(() => {
+        Session.set("selectedNoteId", undefined);
+        Session.set("dataLoaded", false);
 
-    Tracker.autorun(() => {
-        const isAuthenticated = !!Meteor.userId();
-        const routes = getRoutes(isAuthenticated);
+        Tracker.autorun(() => {
+            const isAuthenticated = !!Meteor.userId();
+            const routes = getRoutes(isAuthenticated);
 
-        ReactDOM.render(routes, document.getElementById("render-target"));
+            ReactDOM.render(routes, document.getElementById("render-target"));
+        });
     });
-});
+
+    Meteor.subscribe("notes", () => Session.set("data_loaded", true));
+}

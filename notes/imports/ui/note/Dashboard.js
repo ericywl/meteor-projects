@@ -1,7 +1,8 @@
 import React from "react";
 
-import PrivateHeader from "./PrivateHeader";
-import NoteList from "../note/NoteList";
+import PrivateHeader from "../auth/PrivateHeader";
+import NoteList from "./NoteList";
+import Editor from "./Editor";
 
 const Links = () => {
     return (
@@ -9,6 +10,7 @@ const Links = () => {
             <PrivateHeader title="Dashboard" />
             <div className="page-content">
                 <NoteList />
+                <Editor />
             </div>
         </div>
     );
