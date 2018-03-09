@@ -4,7 +4,6 @@ import { Session } from "meteor/session";
 
 import { getRoutes } from "../imports/routes/routes";
 import "../imports/startup/simpl-schema-config";
-import "../imports/startup/test-setup.js";
 
 Meteor.startup(() => {
     Tracker.autorun(() => {

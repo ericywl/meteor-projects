@@ -1,6 +1,6 @@
 import React from "react";
-import { Meteor } from "meteor/meteor";
 import { Link } from "react-router-dom";
+import { createContainer } from "meteor/react-meteor-data";
 
 export default class Signup extends React.Component {
     constructor(props) {

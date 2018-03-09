@@ -102,8 +102,7 @@ function testNoteUpdate() {
 
             const note = Notes.findOne(noteOne._id);
             expect(note.updatedAt).toBeGreaterThan(0);
-            expect(note).toHaveProperty("title", title);
-            expect(note).toHaveProperty("body", noteOne.body);
+            expect(note).toInclude({ title, body: noteOne.body });
         });
 
         it("should throw error if unauthenticated", function() {
