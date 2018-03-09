@@ -18,7 +18,7 @@ if (Meteor.isClient) {
         });
 
         it("should render the title and timestamp", function() {
-            const formattedTime = "09/03/2018";
+            const formattedTime = "09/03/18 - 10:03";
             const wrapper = mount(
                 <NoteListItem note={notes[0]} session={session} />
             );
@@ -28,7 +28,7 @@ if (Meteor.isClient) {
         });
 
         it("should render default text if no title given", function() {
-            const formattedTime = "09/03/2018";
+            const formattedTime = "09/03/18 - 10:03";
             const wrapper = mount(
                 <NoteListItem note={notes[1]} session={session} />
             );
