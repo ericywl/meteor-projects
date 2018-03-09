@@ -3,18 +3,44 @@ import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 
 import { NotesDB } from "../../api/notes";
+import history from "../../api/history";
 
 export class Editor extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            body: ""
+        };
+    }
+
+    componentDidUpdate(prevProps, prevState, prevContext) {
+        const currentNoteId = this.props.note ? this.props.note._id : undefined;
+        const prevNoteId = prevProps.note ? prevProps.note._id : undefined;
+
+        if (currentNoteId && currentNoteId !== prevNoteId) {
+            this.setState({
+                title: this.props.note.title,
+                body: this.props.note.body
+            });
+        }
+    }
+
     handleTitleChange(event) {
-        this.props.call("notesUpdate", this.props.note._id, {
-            title: event.target.value
-        });
+        const title = event.target.value;
+        this.setState({ title });
+        this.props.call("notesUpdate", this.props.note._id, { title });
     }
 
     handleBodyChange(event) {
-        this.props.call("notesUpdate", this.props.note._id, {
-            body: event.target.value
-        });
+        const body = event.target.value;
+        this.setState({ body });
+        this.props.call("notesUpdate", this.props.note._id, { body });
+    }
+
+    handleRemove(event) {
+        this.props.call("notesRemove", this.props.note._id);
+        this.props.history.replace("/dashboard");
     }
 
     render() {
@@ -23,18 +49,20 @@ export class Editor extends React.Component {
                 <div>
                     <input
                         type="text"
-                        value={this.props.note.title}
+                        value={this.state.title}
                         placeholder="Untitled note"
                         onChange={this.handleTitleChange.bind(this)}
                     />
                     <textarea
                         cols="30"
                         rows="10"
-                        value={this.props.note.body}
+                        value={this.state.body}
                         placeholder="Insert your note here..."
                         onChange={this.handleBodyChange.bind(this)}
                     />
-                    <button>Delete note</button>
+                    <button onClick={this.handleRemove.bind(this)}>
+                        Delete note
+                    </button>
                 </div>
             );
         }
@@ -51,7 +79,9 @@ export class Editor extends React.Component {
 
 Editor.propTypes = {
     note: PropTypes.object,
-    selectedNoteId: PropTypes.string
+    selectedNoteId: PropTypes.string,
+    call: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {
@@ -59,6 +89,7 @@ export default withTracker(() => {
 
     return {
         selectedNoteId,
+        history,
         note: NotesDB.findOne({ _id: selectedNoteId }),
         session: Session,
         call: Meteor.call
