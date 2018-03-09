@@ -1,7 +1,6 @@
 import React from "react";
 import expect from "expect";
-import { mount, shallow } from "enzyme";
-import { MemoryRouter } from "react-router-dom";
+import { mount } from "enzyme";
 
 import { Signup } from "./Signup";
 import "../startup/test-setup";

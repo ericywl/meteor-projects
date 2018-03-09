@@ -2,11 +2,11 @@ import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
 import moment from "moment";
 
-export const Notes = new Mongo.Collection("notes");
+export const NotesDB = new Mongo.Collection("notes");
 
 if (Meteor.isServer) {
     Meteor.publish("notes", function() {
-        return Notes.find({ userId: this.userId });
+        return NotesDB.find({ userId: this.userId });
     });
 }
 
@@ -16,7 +16,7 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
 
-        return Notes.insert({
+        return NotesDB.insert({
             title: "",
             body: "",
             userId: this.userId,
@@ -36,7 +36,7 @@ Meteor.methods({
             }
         }).validate({ _id });
 
-        Notes.remove({ _id, userId: this.userId });
+        NotesDB.remove({ _id, userId: this.userId });
     },
 
     notesUpdate(_id, updates) {
@@ -62,7 +62,7 @@ Meteor.methods({
             ...updates
         });
 
-        Notes.update(
+        NotesDB.update(
             { _id, userId: this.userId },
             {
                 $set: {

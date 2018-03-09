@@ -1,6 +1,6 @@
 import expect from "expect";
 
-import { Notes } from "./notes";
+import { NotesDB } from "./notes";
 import "../startup/simpl-schema-config";
 
 const noteOne = {
@@ -22,9 +22,9 @@ const noteTwo = {
 if (Meteor.isServer) {
     describe("notes", function() {
         beforeEach(function() {
-            Notes.remove({});
-            Notes.insert(noteOne);
-            Notes.insert(noteTwo);
+            NotesDB.remove({});
+            NotesDB.insert(noteOne);
+            NotesDB.insert(noteTwo);
         });
 
         testNoteInsert();
@@ -42,7 +42,7 @@ function testNoteInsert() {
                 userId
             });
 
-            expect(Notes.find({ _id, userId })).toBeTruthy();
+            expect(NotesDB.find({ _id, userId })).toBeTruthy();
         });
 
         it("should not insert note if unauthenticated", function() {
@@ -61,7 +61,7 @@ function testNoteRemove() {
                 [noteOne._id]
             );
 
-            expect(Notes.findOne({ _id: noteOne._id })).toBeFalsy();
+            expect(NotesDB.findOne({ _id: noteOne._id })).toBeFalsy();
         });
 
         it("should throw error if unauthenticated", function() {
@@ -86,7 +86,7 @@ function testNoteRemove() {
                 [noteOne._id]
             );
 
-            expect(Notes.findOne({ _id: noteOne._id })).toBeTruthy();
+            expect(NotesDB.findOne({ _id: noteOne._id })).toBeTruthy();
         });
     });
 }
@@ -101,7 +101,7 @@ function testNoteUpdate() {
                 [noteOne._id, { title }]
             );
 
-            const note = Notes.findOne(noteOne._id);
+            const note = NotesDB.findOne(noteOne._id);
             expect(note.updatedAt).toBeGreaterThan(0);
             expect(note).toInclude({ title, body: noteOne.body });
         });
@@ -137,7 +137,7 @@ function testNoteUpdate() {
                 [noteOne._id, { title }]
             );
 
-            const note = Notes.findOne(noteOne._id);
+            const note = NotesDB.findOne(noteOne._id);
             expect(note).toEqual(noteOne);
         });
     });

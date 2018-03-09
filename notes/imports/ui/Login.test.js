@@ -1,7 +1,6 @@
 import React from "react";
 import expect from "expect";
-import { mount, shallow } from "enzyme";
-import { MemoryRouter } from "react-router-dom";
+import { mount } from "enzyme";
 
 import { Login } from "./Login";
 import "../startup/test-setup";
@@ -39,6 +38,7 @@ if (Meteor.isClient) {
         });
 
         it("should set loginWithPassword callback errors", function() {
+            const reason = "Something went wrong.";
             const spy = expect.createSpy();
             const wrapper = mount(
                 <Login loginWithPassword={spy} isTesting={true} />
@@ -46,8 +46,8 @@ if (Meteor.isClient) {
 
             wrapper.find("form").simulate("submit");
 
-            spy.calls[0].arguments[2]({});
-            expect(wrapper.state("error").length).toNotBe(0);
+            spy.calls[0].arguments[2]({ reason });
+            expect(wrapper.state("error")).toBe(reason);
 
             spy.calls[0].arguments[2]();
             expect(wrapper.state("error").length).toBe(0);
