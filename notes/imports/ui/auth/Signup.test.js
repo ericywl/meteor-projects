@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 
 import { Signup } from "./Signup";
 import "../../startup/test-setup";
-import "../startup/simpl-schema-config";
+import "../../startup/simpl-schema-config";
 
 if (Meteor.isClient) {
     describe("Signup", function() {

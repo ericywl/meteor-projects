@@ -3,26 +3,10 @@ import expect from "expect";
 import moment from "moment";
 import { mount } from "enzyme";
 
-import { NoteList } from "./NoteList";
 import "../../startup/test-setup";
-import "../startup/simpl-schema-config";
-
-const notes = [
-    {
-        _id: "noteId1",
-        title: "My stupid title",
-        body: "",
-        updatedAt: 123123421,
-        userId: "userId1"
-    },
-    {
-        _id: "noteId2",
-        title: "",
-        body: "Mamamia",
-        updatedAt: 18532342,
-        userId: "userId2"
-    }
-];
+import "../../startup/simpl-schema-config";
+import { NoteList } from "./NoteList";
+import { notes } from "../../fixtures/fixtures";
 
 if (Meteor.isClient) {
     describe("NoteList", function() {

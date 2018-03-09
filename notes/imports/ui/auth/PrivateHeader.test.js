@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 
 import { PrivateHeader } from "./PrivateHeader";
 import "../../startup/test-setup";
-import "../startup/simpl-schema-config";
+import "../../startup/simpl-schema-config";
 
 if (Meteor.isClient) {
     describe("PrivateHeader", function() {
