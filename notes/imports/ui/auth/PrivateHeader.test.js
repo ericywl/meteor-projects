@@ -3,7 +3,7 @@ import expect from "expect";
 import { mount } from "enzyme";
 
 import { PrivateHeader } from "./PrivateHeader";
-import "../startup/test-setup";
+import "../../startup/test-setup";
 import "../startup/simpl-schema-config";
 
 if (Meteor.isClient) {

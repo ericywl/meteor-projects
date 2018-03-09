@@ -1,8 +1,7 @@
 import React from "react";
-import { Accounts } from "meteor/accounts-base";
 
 import PrivateHeader from "./PrivateHeader";
-import NoteList from "./NoteList";
+import NoteList from "../note/NoteList";
 
 const Links = () => {
     return (

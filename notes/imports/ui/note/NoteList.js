@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 
-import { NotesDB } from "../api/notes";
+import { NotesDB } from "../../api/notes";
 import NoteListHeader from "./NoteListHeader";
 import NoteListItem from "./NoteListItem";
 import NoteListEmptyItem from "./NoteListEmptyItem";

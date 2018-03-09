@@ -4,7 +4,7 @@ import moment from "moment";
 import { mount } from "enzyme";
 
 import { NoteList } from "./NoteList";
-import "../startup/test-setup";
+import "../../startup/test-setup";
 import "../startup/simpl-schema-config";
 
 const notes = [

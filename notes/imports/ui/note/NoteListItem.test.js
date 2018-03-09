@@ -1,10 +1,9 @@
 import React from "react";
 import expect from "expect";
-import moment from "moment";
 import { mount } from "enzyme";
 
 import { NoteListItem } from "./NoteListItem";
-import "../startup/test-setup";
+import "../../startup/test-setup";
 import "../startup/simpl-schema-config";
 
 if (Meteor.isClient) {

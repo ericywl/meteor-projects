@@ -1,14 +1,10 @@
 import React from "react";
-import {
-    Redirect,
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from "react-router-dom";
+import { Redirect, Router, Route, Switch } from "react-router-dom";
 
-import Dashboard from "../ui/Dashboard";
-import Login from "../ui/Login";
-import Signup from "../ui/Signup";
+import history from "../api/history";
+import Dashboard from "../ui/auth/Dashboard";
+import Login from "../ui/auth/Login";
+import Signup from "../ui/auth/Signup";
 import NotFound from "../ui/NotFound";
 
 import PublicRoute from "./PublicRoute";
@@ -16,7 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 
 export const getRoutes = isAuthenticated => {
     return (
-        <Router>
+        <Router history={history}>
             <div>
                 <Switch>
                     <PublicRoute
@@ -37,6 +33,13 @@ export const getRoutes = isAuthenticated => {
                         isAuth={isAuthenticated}
                         component={Dashboard}
                     />
+
+                    <PrivateRoute
+                        path="/dashboard/:id"
+                        isAuth={isAuthenticated}
+                        component={Dashboard}
+                    />
+
                     <Route component={NotFound} />
                 </Switch>
             </div>
