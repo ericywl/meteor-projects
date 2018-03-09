@@ -3,6 +3,7 @@ import expect from "expect";
 import { mount } from "enzyme";
 
 import { PrivateHeader } from "./PrivateHeader";
+import "../startup/test-setup";
 
 if (Meteor.isClient) {
     describe("PrivateHeader", function() {

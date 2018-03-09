@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createContainer } from "meteor/react-meteor-data";
+import { withTracker } from "meteor/react-meteor-data";
 
 export const PrivateHeader = props => {
     return (
@@ -23,6 +23,6 @@ PrivateHeader.propTypes = {
     handleLogout: PropTypes.func.isRequired
 };
 
-export default createContainer(() => {
+export default withTracker(() => {
     return { handleLogout: () => Accounts.logout() };
-}, PrivateHeader);
+})(PrivateHeader);
