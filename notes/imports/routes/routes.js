@@ -9,7 +9,6 @@ import NotFound from "../ui/NotFound";
 
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import NoteRoute from "./NoteRoute";
 
 export const getRoutes = isAuthenticated => {
     return (
@@ -36,7 +35,7 @@ export const getRoutes = isAuthenticated => {
                         component={Dashboard}
                     />
 
-                    <NoteRoute
+                    <PrivateRoute
                         path="/dashboard/:id"
                         isAuth={isAuthenticated}
                         component={Dashboard}
