@@ -46,5 +46,51 @@ if (Meteor.isClient) {
             expect(call).toHaveBeenCalledWith("notesRemove", notes[0]._id);
             expect(history.replace).toHaveBeenCalledWith("/dashboard");
         });
+
+        it("should update the title on input change", function() {
+            const newTitle = "This is a brannnndddd new title!";
+            const wrapper = mount(
+                <Editor
+                    selectedNoteId={notes[0]._id}
+                    note={notes[0]}
+                    call={call}
+                    history={history}
+                />
+            );
+
+            wrapper.find("input").simulate("change", {
+                target: {
+                    value: newTitle
+                }
+            });
+
+            expect(wrapper.state("title")).toBe(newTitle);
+            expect(call).toHaveBeenCalledWith("notesUpdate", notes[0]._id, {
+                title: newTitle
+            });
+        });
+
+        it("should update the body on body change", function() {
+            const newBody = "Added a new bodyy!";
+            const wrapper = mount(
+                <Editor
+                    selectedNoteId={notes[0]._id}
+                    note={notes[0]}
+                    call={call}
+                    history={history}
+                />
+            );
+
+            wrapper.find("textarea").simulate("change", {
+                target: {
+                    value: newBody
+                }
+            });
+
+            expect(wrapper.state("body")).toBe(newBody);
+            expect(call).toHaveBeenCalledWith("notesUpdate", notes[0]._id, {
+                body: newBody
+            });
+        });
     });
 }

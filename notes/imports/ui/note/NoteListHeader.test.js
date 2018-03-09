@@ -4,8 +4,6 @@ import moment from "moment";
 import { mount } from "enzyme";
 
 import { NoteListHeader } from "./NoteListHeader";
-import "../../startup/test-setup";
-import "../../startup/simpl-schema-config";
 
 if (Meteor.isClient) {
     describe("NoteListHeader", function() {

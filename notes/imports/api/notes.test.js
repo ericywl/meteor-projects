@@ -1,7 +1,6 @@
 import expect from "expect";
 
 import { NotesDB } from "./notes";
-import "../startup/simpl-schema-config";
 
 const noteOne = {
     _id: "testNoteId1",

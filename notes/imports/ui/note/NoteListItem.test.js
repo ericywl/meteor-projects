@@ -2,8 +2,6 @@ import React from "react";
 import expect from "expect";
 import { mount } from "enzyme";
 
-import "../../startup/test-setup";
-import "../../startup/simpl-schema-config";
 import { notes } from "../../fixtures/fixtures";
 import { NoteListItem } from "./NoteListItem";
 

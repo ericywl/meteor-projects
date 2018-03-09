@@ -3,8 +3,6 @@ import expect from "expect";
 import moment from "moment";
 import { mount } from "enzyme";
 
-import "../../startup/test-setup";
-import "../../startup/simpl-schema-config";
 import { NoteList } from "./NoteList";
 import { notes } from "../../fixtures/fixtures";
 
