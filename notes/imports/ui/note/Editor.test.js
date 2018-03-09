@@ -92,5 +92,26 @@ if (Meteor.isClient) {
                 body: newBody
             });
         });
+
+        it("should set state for new note", function() {
+            const wrapper = mount(<Editor history={history} call={call} />);
+            wrapper.setProps({
+                selectedNoteId: notes[0]._id,
+                note: notes[0]
+            });
+
+            expect(wrapper.state("title")).toBe(notes[0].title);
+            expect(wrapper.state("body")).toBe(notes[0].body);
+        });
+
+        it("should not set state if note prop not provided", function() {
+            const wrapper = mount(<Editor history={history} call={call} />);
+            wrapper.setProps({
+                selectedNoteId: notes[0]._id
+            });
+
+            expect(wrapper.state("title")).toBe("");
+            expect(wrapper.state("body")).toBe("");
+        });
     });
 }
