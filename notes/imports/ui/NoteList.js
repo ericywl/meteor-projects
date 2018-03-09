@@ -4,15 +4,24 @@ import { withTracker } from "meteor/react-meteor-data";
 
 import { NotesDB } from "../api/notes";
 import NoteListHeader from "./NoteListHeader";
-import NoteListItem from "./NotesListItem";
+import NoteListItem from "./NoteListItem";
+import NoteListEmptyItem from "./NoteListEmptyItem";
 
 export const NoteList = props => {
+    const renderList = () => {
+        if (props.notes.length === 0) {
+            return <NoteListEmptyItem />;
+        }
+
+        return props.notes.map(note => {
+            return <NoteListItem key={note._id} note={note} />;
+        });
+    };
+
     return (
         <div>
             <NoteListHeader />
-            {props.notes.map(note => {
-                return <NoteListItem key={note._id} note={note} />;
-            })}
+            {renderList()}
         </div>
     );
 };
