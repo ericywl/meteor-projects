@@ -11,7 +11,10 @@ export class NoteListHeader extends React.Component {
     }
 
     handleSearchChange(event) {
-        const search = event.target.value.trim().toLowerCase();
+        const search = event.target.value
+            .trim()
+            .toLowerCase()
+            .replace(/\s/g, "");
         this.setState({ search });
         this.props.session.set("searchQuery", search);
     }

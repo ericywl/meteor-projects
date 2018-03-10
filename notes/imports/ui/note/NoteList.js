@@ -50,7 +50,13 @@ export default withTracker(() => {
                 };
             })
             .filter(note => {
-                return note.title.toLowerCase().indexOf(searchQuery) !== -1;
+                const noteTitle = note.title ? note.title : "Untitled note";
+                return (
+                    noteTitle
+                        .toLowerCase()
+                        .replace(/\s/g, "")
+                        .indexOf(searchQuery) !== -1
+                );
             })
     };
 })(NoteList);
