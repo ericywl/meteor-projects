@@ -4,10 +4,10 @@ import PrivateHeader from "../auth/PrivateHeader";
 import NoteList from "./NoteList";
 import Editor from "./Editor";
 
-const Links = () => {
+export const Links = () => {
     return (
         <div>
-            <PrivateHeader title="Dashboard" />
+            <PrivateHeader title="Notes" />
             <div className="page-content">
                 <div className="page-content__sidebar">
                     <NoteList />

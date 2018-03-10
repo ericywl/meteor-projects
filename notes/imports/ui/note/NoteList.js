@@ -8,24 +8,30 @@ import NoteListHeader from "./NoteListHeader";
 import NoteListItem from "./NoteListItem";
 import NoteListEmptyItem from "./NoteListEmptyItem";
 
-export const NoteList = props => {
-    const renderList = () => {
-        if (props.notes.length === 0) {
+export class NoteList extends React.Component {
+    renderList() {
+        if (this.props.notes.length === 0) {
             return <NoteListEmptyItem />;
         }
 
-        return props.notes.map(note => {
+        return this.props.notes.map(note => {
             return <NoteListItem key={note._id} note={note} />;
         });
-    };
+    }
 
-    return (
-        <div className="item-list">
-            <NoteListHeader />
-            <FlipMove maintainContainerHeight="true">{renderList()}</FlipMove>
-        </div>
-    );
-};
+    render() {
+        return (
+            <div className="item-list">
+                <NoteListHeader />
+                <div className="item-list__rest">
+                    <FlipMove maintainContainerHeight="true">
+                        {this.renderList()}
+                    </FlipMove>
+                </div>
+            </div>
+        );
+    }
+}
 
 NoteList.propTypes = {
     notes: PropTypes.array.isRequired
