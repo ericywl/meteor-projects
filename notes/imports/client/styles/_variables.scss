@@ -7,9 +7,11 @@ $dark-grey: #777777;
 /* BODY */
 $body-bg-color: #f3f3f3;
 $body-default-color: #333333;
+$body-default-font: Helvetica, Arial, sans-serif;
 
 /* SPACING */
 $space: 1.4rem;
+$double-space: calc(#{$space} * 2);
 $site-max-width: 100rem;
 
 /* FONT SIZES */
@@ -48,7 +50,7 @@ $boxed-view-bg: white;
 $boxed-view-border-color: $grey;
 
 /* PAGE CONTENT */
-$page-content-sidebar-width: 20rem;
+$page-content-sidebar-width: 28rem;
 $page-content-main-width: calc(
     #{$site-max-width} - #{$page-content-sidebar-width}
 );

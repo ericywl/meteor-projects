@@ -36,3 +36,9 @@
     border: 1px solid $button-greyed-border-color;
     color: $button-greyed-color;
 }
+
+.button--delete:hover {
+    border: 1px solid #f74d4d;
+    background-color: #f86569;
+    color: white;
+}

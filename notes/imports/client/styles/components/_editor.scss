@@ -1,5 +1,31 @@
 .editor {
     background-color: white;
     border: 1px solid $grey;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    padding: $double-space;
+}
+
+.editor__title {
+    border: none;
+    border-bottom: 2px solid $grey;
+    font-size: $large-font-size;
+    outline: none;
+    padding: $space;
+    margin-bottom: $double-space;
+}
+
+.editor__body {
+    flex-grow: 1;
+    font-weight: 300;
+    outline: none;
+    padding: $space;
+    resize: none;
+}
+
+.editor__message {
+    text-align: center;
+    margin: $double-space;
+    font-style: italic;
 }
