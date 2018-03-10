@@ -2,11 +2,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 html {
     font-size: 62.5%;
-    overflow-y: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -15,7 +15,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: lighten($brand-primary, 40%);
+    background-color: darken($grey, 10%);
 }
 
 body {
@@ -46,6 +46,7 @@ a {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="search"],
 textarea {
     border: 1px solid $input-border;
     color: $body-default-color;

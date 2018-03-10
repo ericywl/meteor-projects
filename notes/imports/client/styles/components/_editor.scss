@@ -27,7 +27,7 @@
 }
 
 .editor__message {
-    background-color: $grey;
+    background-color: lighten($grey, 8%);
     border-radius: 0.5rem;
     font-style: italic;
     text-align: center;

@@ -37,6 +37,7 @@ NoteList.propTypes = {
 
 export default withTracker(() => {
     const selectedNoteId = Session.get("selectedNoteId");
+    const searchQuery = Session.get("searchQuery");
     Meteor.subscribe("notes", () => Session.set("dataLoaded", true));
 
     return {
@@ -47,6 +48,9 @@ export default withTracker(() => {
                     ...note,
                     selected: note._id === selectedNoteId
                 };
+            })
+            .filter(note => {
+                return note.title.toLowerCase().indexOf(searchQuery) !== -1;
             })
     };
 })(NoteList);

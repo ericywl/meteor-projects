@@ -3,6 +3,19 @@ import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 
 export class NoteListHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: ""
+        };
+    }
+
+    handleSearchChange(event) {
+        const search = event.target.value.trim().toLowerCase();
+        this.setState({ search });
+        this.props.session.set("searchQuery", search);
+    }
+
     render() {
         return (
             <div className="item-list__header">
@@ -18,6 +31,12 @@ export class NoteListHeader extends React.Component {
                 >
                     + Create Note
                 </button>
+
+                <input
+                    type="search"
+                    placeholder="Search for note title"
+                    onChange={this.handleSearchChange.bind(this)}
+                />
             </div>
         );
     }
