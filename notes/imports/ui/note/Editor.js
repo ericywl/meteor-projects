@@ -46,7 +46,7 @@ export class Editor extends React.Component {
     render() {
         if (this.props.note) {
             return (
-                <div>
+                <div className="editor">
                     <input
                         type="text"
                         value={this.state.title}
@@ -54,8 +54,6 @@ export class Editor extends React.Component {
                         onChange={this.handleTitleChange.bind(this)}
                     />
                     <textarea
-                        cols="30"
-                        rows="10"
                         value={this.state.body}
                         placeholder="Insert your note here..."
                         onChange={this.handleBodyChange.bind(this)}
@@ -68,11 +66,13 @@ export class Editor extends React.Component {
         }
 
         return (
-            <p>
-                {this.props.selectedNoteId
-                    ? "Note not found."
-                    : "Pick or create a note."}
-            </p>
+            <div className="editor">
+                <p>
+                    {this.props.selectedNoteId
+                        ? "Note not found."
+                        : "Pick or create a note."}
+                </p>
+            </div>
         );
     }
 }

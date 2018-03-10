@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -9,6 +10,8 @@ html {
 }
 
 body {
+    color: $body-default-color;
+    background-color: $body-bg-color;
     font-family: Helvetica, sans-serif;
     font-size: $base-font-size;
 }
@@ -28,7 +31,7 @@ p {
 }
 
 a {
-    color: black;
+    color: $body-default-color;
 }
 
 input[type="text"],
