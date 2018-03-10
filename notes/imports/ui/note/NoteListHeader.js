@@ -7,7 +7,11 @@ export const NoteListHeader = props => {
         <div>
             <button
                 onClick={() => {
-                    props.meteorCall("notesInsert");
+                    props.meteorCall("notesInsert", (err, res) => {
+                        if (res) {
+                            props.session.set("selectedNoteId", res);
+                        }
+                    });
                 }}
             >
                 + Create Note
@@ -17,9 +21,13 @@ export const NoteListHeader = props => {
 };
 
 NoteListHeader.propTypes = {
-    meteorCall: PropTypes.func.isRequired
+    meteorCall: PropTypes.func.isRequired,
+    session: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {
-    return { meteorCall: Meteor.call };
+    return {
+        meteorCall: Meteor.call,
+        session: Session
+    };
 })(NoteListHeader);

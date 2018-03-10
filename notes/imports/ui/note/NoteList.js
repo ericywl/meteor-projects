@@ -35,7 +35,7 @@ export default withTracker(() => {
     Meteor.subscribe("notes", () => Session.set("dataLoaded", true));
 
     return {
-        notes: NotesDB.find()
+        notes: NotesDB.find({}, { sort: { updatedAt: -1 } })
             .fetch()
             .map(note => {
                 return {
