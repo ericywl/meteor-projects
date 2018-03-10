@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Session } from "meteor/session";
 import { Redirect } from "react-router-dom";
-import PerfectScrollbar from "perfect-scrollbar";
 
 import history from "../imports/api/history";
 import { getRoutes } from "../imports/routes/routes";
@@ -32,7 +31,6 @@ if (Meteor.isClient) {
             const routes = getRoutes(isAuthenticated);
 
             ReactDOM.render(routes, document.getElementById("render-target"));
-            const ps = new PerfectScrollbar(".item-list");
         });
     });
 

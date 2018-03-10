@@ -6,6 +6,16 @@
 
 html {
     font-size: 62.5%;
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: lighten($brand-primary, 40%);
 }
 
 body {

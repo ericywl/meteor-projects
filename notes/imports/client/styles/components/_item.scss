@@ -1,6 +1,6 @@
 /* ITEM LIST */
 .item-list {
-    position: relative;
+    overflow-y: scroll;
     background-color: white;
     border: 1px solid $grey;
     width: 100%;

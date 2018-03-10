@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
+import ScrollArea from "react-scrollbar";
 
 import { NotesDB } from "../../api/notes";
 import history from "../../api/history";
@@ -53,12 +54,14 @@ export class Editor extends React.Component {
                         placeholder="Untitled note"
                         onChange={this.handleTitleChange.bind(this)}
                     />
+
                     <textarea
                         className="editor__body"
                         value={this.state.body}
                         placeholder="Insert your note here..."
                         onChange={this.handleBodyChange.bind(this)}
                     />
+
                     <div>
                         <button
                             className="button button--greyed button--delete"
