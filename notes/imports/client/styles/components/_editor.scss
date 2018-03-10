@@ -25,7 +25,10 @@
 }
 
 .editor__message {
+    background-color: $grey;
+    border-radius: 0.5rem;
+    font-style: italic;
     text-align: center;
     margin: $double-space;
-    font-style: italic;
+    padding: $double-space;
 }

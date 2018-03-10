@@ -73,13 +73,11 @@ export class Editor extends React.Component {
 
         return (
             <div className="editor">
-                <div>
-                    <p className="editor__message">
-                        {this.props.selectedNoteId
-                            ? "Note not found."
-                            : "Pick or create a note."}
-                    </p>
-                </div>
+                <p className="editor__message">
+                    {this.props.selectedNoteId
+                        ? "Note not found!"
+                        : "Pick or create a note to get started."}
+                </p>
             </div>
         );
     }

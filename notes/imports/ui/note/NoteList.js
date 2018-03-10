@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
+import FlipMove from "react-flip-move";
 
 import { NotesDB } from "../../api/notes";
 import NoteListHeader from "./NoteListHeader";
@@ -21,7 +22,7 @@ export const NoteList = props => {
     return (
         <div className="item-list">
             <NoteListHeader />
-            {renderList()}
+            <FlipMove maintainContainerHeight="true">{renderList()}</FlipMove>
         </div>
     );
 };
