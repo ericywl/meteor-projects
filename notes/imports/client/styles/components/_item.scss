@@ -1,8 +1,6 @@
 /* ITEM LIST */
 .item-list {
-    display: flex;
-    flex-direction: column;
-    overflow-y: hidden;
+    position: relative;
     background-color: white;
     border: 1px solid $grey;
     width: 100%;
@@ -12,12 +10,6 @@
     display: flex;
     flex-direction: column;
     padding: $space;
-}
-
-.item-list__rest {
-    border: 0.5px solid transparent;
-    flex-grow: 1;
-    overflow-y: scroll;
 }
 
 /* ITEM */

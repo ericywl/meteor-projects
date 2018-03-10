@@ -23,11 +23,9 @@ export class NoteList extends React.Component {
         return (
             <div className="item-list">
                 <NoteListHeader />
-                <div className="item-list__rest">
-                    <FlipMove maintainContainerHeight="true">
-                        {this.renderList()}
-                    </FlipMove>
-                </div>
+                <FlipMove maintainContainerHeight="true">
+                    {this.renderList()}
+                </FlipMove>
             </div>
         );
     }
