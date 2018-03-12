@@ -1,6 +1,13 @@
 import React from "react";
+import styled from "styled-components";
 
 import { Players } from "../api/players";
+
+import Button from "../components/Button";
+
+const Form = styled.form`
+    display: flex;
+`;
 
 export default class AddPlayer extends React.Component {
     static handleSubmit(event) {
@@ -19,14 +26,15 @@ export default class AddPlayer extends React.Component {
     render() {
         return (
             <div className="item">
-                <form className="form" onSubmit={AddPlayer.handleSubmit.bind(this)}>
-                    <input className="form__input"
+                <Form onSubmit={AddPlayer.handleSubmit.bind(this)}>
+                    <input
+                        className="form__input"
                         type="text"
                         name="playerName"
                         placeholder="Player name"
                     />
-                    <button className="button">Add player</button>
-                </form>
+                    <Button>Add player</Button>
+                </Form>
             </div>
         );
     }

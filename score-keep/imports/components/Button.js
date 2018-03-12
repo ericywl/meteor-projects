@@ -1,4 +1,6 @@
-.button {
+import styled from "styled-components";
+
+const Button = styled.button`
     background: transparent;
     border: 1px solid #555555;
     color: #555555;
@@ -8,12 +10,13 @@
     margin-left: 1.3rem;
     outline: none;
     padding: 1.3rem;
-    -webkit-transition: background .2s ease, transform .2s ease;
-    -moz-transition: background .2s ease, transform .2s ease;
-    -o-transition: background .2s ease, transform .2s ease;
-    transition: background .2s ease, transform .2s ease;
-    
-    &:hover, &:focus {
+    -webkit-transition: background 0.2s ease, transform 0.2s ease;
+    -moz-transition: background 0.2s ease, transform 0.2s ease;
+    -o-transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
+
+    &:hover,
+    &:focus {
         background: #e8e8e8;
     }
 
@@ -25,10 +28,6 @@
         -o-transform: scale(1.1);
         transform: scale(1.1);
     }
-}
+`;
 
-.button--round {
-    border-radius: 50%;
-    height: 4rem;
-    width: 4rem;
-}
+export default Button;
